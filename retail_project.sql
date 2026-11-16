@@ -1,3 +1,4 @@
+-- Creo las tablas solicitadas 
 CREATE TABLE clientes(
 	cliente_id SERIAL PRIMARY KEY,
 	nombre_cliente VARCHAR (100) NOT NULL,
@@ -23,7 +24,7 @@ CREATE TABLE ventas(
 
 BEGIN;
 
--- 1. Carga de 5 clientes 
+-- Carga de 5 clientes 
 INSERT INTO clientes (nombre_cliente, email, edad) VALUES
     ('Lucas Fernández', 'lucas.fernandez@email.com', 28),
     ('Sofía Martínez', 'sofia.martinez@email.com', 34),
@@ -31,7 +32,7 @@ INSERT INTO clientes (nombre_cliente, email, edad) VALUES
     ('Valentina Ruiz', 'valentina.ruiz@email.com', 41),
     ('Nicolás Díaz', 'nicolas.diaz@email.com', 19);
 
--- 2. Carga de 5 productos 
+-- Carga de 5 productos 
 INSERT INTO productos (nombre_producto, categoria, precio, stock) VALUES
     ('Mouse Inalámbrico', 'Tecnología', 25.50, 40),
     ('Teclado Mecánico', 'Tecnología', 85.00, 15),
@@ -39,7 +40,7 @@ INSERT INTO productos (nombre_producto, categoria, precio, stock) VALUES
     ('Silla Ergonómica', 'Muebles', 180.00, 8),
     ('Escritorio Minimalista', 'Muebles', 150.00, 5);
 
--- 3. Carga de 5 ventas 
+-- Carga de 5 ventas 
 INSERT INTO ventas (cliente_id, producto_id, cantidad, fecha_pedido) VALUES
     (1, 1, 2, '2026-11-10'),
     (2, 3, 1, '2026-11-11'),
@@ -49,9 +50,11 @@ INSERT INTO ventas (cliente_id, producto_id, cantidad, fecha_pedido) VALUES
 
 COMMIT;
 
+-- Modifico el precio de todos los productos de la categoría Muebles
 UPDATE productos
 SET precio = precio * 1.10
 WHERE categoria = 'Muebles';
 
+-- Elimino la venta con la venta_id 3
 DELETE FROM ventas
 WHERE ventas_id = 3;
